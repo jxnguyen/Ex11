@@ -1,47 +1,68 @@
-class Ex11 {
-
-	public static void main(String[] args) {
-		
-	}
-}
-
 
 class Knoten {
-    int wert;
+		// ATTRIBUTES
+		int value;
     Knoten next;
 
+		// CONSTRUCTOR
     Knoten(int i) {
-        wert = i;
-        this.wert = i; // Ã¤quivalent
-
-        next = null; // Ã¼berflÃ¼ssig
+        this.value = i;
     }
 }
 
 class VerketteteListe {
-    public static void main(String [] x) {
-        Knoten a = new Knoten(5);
-        Knoten b = new Knoten(3);
-        System.out.println(b.wert);
-        System.out.println(b.next);
-        System.out.println(b);
-        Knoten c = b.next;
-        System.out.println(c.wert);
+		// ATTRIBUTES
+    Knoten head;
+
+    public void insert(int i) {
+			// Insert node at beginning of list
+      Knoten node = new Knoten(i);
+      node.next = head;
+      head = node;
     }
 
-    Knoten eingang;
+		public void insert(int i, Knoten k) {
+			// Insert new node with value i after node k
+			Knoten node = new Knoten(i);
+			node.next = k.next;
+			k.next = node;
+		}
 
-    public void einfÃ¼ge(int i) {
-        Knoten a = new Knoten(i);
-        a.next = eingang;
-        eingang = a;
+    public void traverse() {
+			// Traverse the list & print each node
+      Knoten node = head;
+      while (node != null) {
+          System.out.println(node.value);
+          node = node.next;
+      }
     }
 
-    public void durchlaufe(int i) {
-        Knoten a = eingang;
-        while (a!=null) {
-            System.out.println(a.wert);
-            a = a.next;
-        }
-    }
+		public Knoten nodeForValue(int i) {
+			// Return the first node with the value i, else null.
+			Knoten node = head;
+			while (node != null) {
+				if (node.value == i) {
+					return node;
+				}
+				node = node.next;
+			}
+			return null;
+		}
+
+		// MAIN
+		//
+		public static void main(String [] x) {
+
+				VerketteteListe list = new VerketteteListe();
+				for (int i = 10; i > 0; i--) {
+					list.insert(i);
+				}
+				Knoten node = list.nodeForValue(5);
+				list.insert(20, node);
+				list.traverse();
+
+
+				// list.insert(20);
+
+		}
 }
