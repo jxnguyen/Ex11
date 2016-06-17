@@ -36,36 +36,31 @@ class VerketteteListe {
 
 		public boolean delete(Knoten k) {
 			// Delete node k from the list & return true, else return false
-			Knoten node = head;
+
 			// traverse list
-			while (node != null) {
+			for (Knoten node = head; node != null; node = node.next) {
 				// if next node is k
 				if (node.next == k) {
 					// exclude k
 					node.next = k.next;
 					return true;
 				}
-				node = node.next;
 			}
 			return false;
 		}
 
     public void traverse() {
 			// Traverse the list & print each node
-      Knoten node = head;
-      while (node != null) {
+      for (Knoten node = head; node != null; node = node.next) {
           System.out.print(node.value + ", ");
-          node = node.next;
       }
 			System.out.println();
     }
 
 		public Knoten nodeForValue(int i) {
 			// Return the first node with the value i, else null
-			Knoten node = head;
-			while (node != null) {
+			for (Knoten node = head; node != null; node = node.next) {
 				if (node.value == i) return node;
-				node = node.next;
 			}
 			return null;
 		}
@@ -82,7 +77,7 @@ class VerketteteListe {
 
 				Knoten node = list.nodeForValue(5);
 				list.insert(20, node);
-				System.out.println(list.delete(node2));
+				System.out.println(list.delete(node));
 				list.traverse();
 		}
 }
