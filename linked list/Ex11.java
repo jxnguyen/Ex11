@@ -75,9 +75,25 @@ class VerketteteListe {
 					list.insert(i);
 				}
 
+				System.out.println("Linked list:");
+				list.traverse();
+
+				System.out.println("Inserting 20 after 5:");
 				Knoten node = list.nodeForValue(5);
 				list.insert(20, node);
-				System.out.println(list.delete(node));
 				list.traverse();
+
+				System.out.println("Deteling head: " + list.delete());
+				list.traverse();
+
+				System.out.println("Deleting node 5: " + list.delete(node));
+				list.traverse();
+
+				node = new Knoten(12);
+				System.out.println("Deleting node not in list: " + list.delete(node));
+				list.traverse();
+
+				list.head = null;
+				System.out.println("Deleting from empty list: " + list.delete());
 		}
 }
